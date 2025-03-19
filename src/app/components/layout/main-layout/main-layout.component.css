@@ -29,7 +29,8 @@
     background : #F7F7F7;
     height: 100%;
     overflow: auto;
-    margin-left: 200px; /* Matches sidebar width */
+    margin-left: 50px;
+    /* margin-left: 200px; */
     transition: margin-left 0.3s ease;
 }
 
@@ -165,5 +166,8 @@
     * {
         max-width: 100%;
         box-sizing: border-box;
+    }
+    .main-content{
+        padding: 1rem;
     }
 }

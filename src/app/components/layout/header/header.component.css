@@ -4,15 +4,11 @@
     
     padding: 10px 15px;
     overflow: hidden;
-    
+    z-index: 1000;
+    width: 100%;
+    position: fixed;
 
   }
-
-  
-
-
-
-
 
   /* Logo Styling */
   .logo {
