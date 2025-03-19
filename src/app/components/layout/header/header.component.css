@@ -1,0 +1,67 @@
+/* Custom Header Styling */
+.custom-header {
+    background-color: #ffffff; 
+    
+    padding: 10px 15px;
+    overflow: hidden;
+    
+
+  }
+
+  
+
+
+
+
+
+  /* Logo Styling */
+  .logo {
+    height: 35px;
+  }
+  
+  /* Navbar Toggle Button */
+  .navbar-toggler {
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+  }
+  
+  /* Navbar Links */
+  .navbar-nav .nav-item {
+    margin: 0 10px;
+  }
+  
+  .navbar-nav .nav-item .nav-link {
+    color: white !important;
+    font-weight: 500;
+    transition: 0.3s;
+  }
+  
+  .navbar-nav .nav-item .nav-link:hover {
+    color: #ffd700 !important; /* Highlight effect */
+  }
+  
+  /* PrimeNG Button Styling */
+  .p-button {
+    background-color: white !important;
+    color: #19988B !important;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+  }
+  
+  .p-button:hover {
+    background-color: #158177 !important;
+    color: white !important;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 992px) {
+    .navbar-nav {
+      text-align: center;
+    }
+    .nav-item {
+      margin-bottom: 10px;
+    }
+  }
+  

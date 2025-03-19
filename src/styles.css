@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+/* Example: Override PrimeNG button styles */
+.p-button {
+    font-size: 14px;
+    border-radius: 8px;
+  }
+  
+  /* Example: Adjust Bootstrap grid for PrimeNG */
+  .container {
+    max-width: 1200px;
+  }
+  
+
+  body, app-root {
+    background-color: #F7F7F7 !important;
+
+   
+
+  }
+  

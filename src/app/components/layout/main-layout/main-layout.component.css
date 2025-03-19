@@ -1,0 +1,169 @@
+.body {
+    background: #EEEEEE;
+}
+
+
+
+
+/* .main-content {
+    padding: 20px;
+    flex-grow: 1;
+    background: #EEEEEE;
+    height: 100%;
+    overflow: auto;
+    margin-left: 50px;
+    transition: margin-left 0.3s ease;
+}
+
+
+.main-content.sidebar-close {
+    margin-left: 60px !important;
+}
+
+
+.main-content.sidebar-open {
+    margin-left: 240px !important; 
+} */.main-content {
+    padding: 20px;
+    flex-grow: 1;
+    background : #F7F7F7;
+    height: 100%;
+    overflow: auto;
+    margin-left: 200px; /* Matches sidebar width */
+    transition: margin-left 0.3s ease;
+}
+
+/* 🔹 Sidebar Closed */
+.main-content.sidebar-close {
+    margin-left: 100px !important; /* More compact spacing */
+}
+
+/* 🔹 Sidebar Open */
+.main-content.sidebar-open {
+    margin-left: 250px !important; /* Matches new sidebar width */
+}
+
+
+
+
+
+/* 🔹 iPad Mini (768x1024) */
+@media (max-width: 769px) {
+    .main-content {
+        margin-left: 0px; /* Content should take full width */
+        transition: margin-left 0.3s ease-in-out;
+    }
+
+    .sidebar {
+        position: fixed;
+        width: 200px; /* Sidebar width */
+        left: -200px; /* Hide sidebar initially */
+        transition: left 0.3s ease-in-out;
+        background-color: white;
+        z-index: 1000;
+    }
+
+    /* When Sidebar Opens */
+    /* .sidebar.sidebar-open {
+        left: 0 !important;
+    }
+
+ 
+    .main-content.sidebar-open {
+        margin-left: 200px !important; 
+    }
+
+
+    .main-content.sidebar-close {
+        margin-left: 0px !important; 
+    } */
+}
+
+
+
+
+/* 🔹 iPad Air (820x1180) */
+@media (max-width: 1180px) {
+    .main-content {
+        margin-left: 300px; /* Better proportion */
+    }
+
+    .main-content.sidebar-close {
+        margin-left: 100px !important;
+    }
+
+    .main-content.sidebar-open {
+        margin-left: 300px !important;
+    }
+}
+
+/* 🔹 iPad Pro (1024x1366) */
+@media (max-width: 1366px) and (min-width: 1024px) {
+    .sidebar {
+        width: 180px;
+    }
+
+    .sidebar.collapsed {
+        width: 70px;
+    }
+
+    .main-content {
+        margin-left: 180px;
+        transition: margin-left 0.3s ease-in-out;
+    }
+
+    .main-content.sidebar-close {
+        margin-left: 70px !important;
+    }
+
+    .main-content.sidebar-open {
+        margin-left: 250px !important;
+    }
+}
+
+
+/* 🔹 Mobile View (Below 768px) */
+
+@media (max-width: 768px) {
+    html, body {
+        overflow-x: hidden; 
+    }
+
+    .main-content {
+        margin-left: 40px; /* Adjusted margin */
+        transition: margin-left 0.3s ease-in-out;
+    }
+
+    .sidebar {
+        position: fixed;
+        width: 40px; /* Proper collapsed width */
+        height: 100vh;
+        overflow: hidden; /* Ensure no unwanted scrolling */
+        background-color: white;
+        box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+    }
+
+    .sidebar.sidebar-open {
+        width: 200px !important; /* Expand on open */
+    }
+
+    .main-content.sidebar-close {
+        margin-left: 80px !important; /* Adjusted for proper spacing */
+    }
+
+    .main-content.sidebar-open {
+        margin-left: 80px !important;/* Content shifts properly */
+    }
+
+    /* Hide sidebar labels when collapsed */
+    .sidebar:not(.sidebar-open) span {
+        display: none; 
+    }
+
+    /* Prevent any element from exceeding screen width */
+    * {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+}
