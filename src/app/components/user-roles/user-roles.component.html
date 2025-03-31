@@ -1,0 +1,242 @@
+<div class="container-fluid custom-wrapper">
+  <div class="card">
+    <div class="card-body">
+   
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <span class="p-input-icon-left w-100">
+            
+            <input 
+              type="text" 
+              pInputText 
+              class="form-control" 
+              placeholder="Search user" 
+              (input)="applyFilterGlobal($event, 'contains')"
+            />
+          </span>
+        </div>
+        <div class="col-md-6 text-end">
+          
+          <button 
+            pButton 
+            type="button" 
+            label="Create New" 
+            icon="pi pi-plus" 
+            class=" p-button p-button-success"
+            (click)="createNewUser()"
+          ><span class="pi pi-plus p-1"></span> Create New</button>
+        </div>
+      </div>
+
+
+      <p-table 
+        #dt 
+        [value]="users" 
+        [paginator]="true" 
+        [rows]="7" 
+        [rowsPerPageOptions]="[7, 10, 25, 50]"
+        [globalFilterFields]="['name', 'zoneId', 'emailId', 'role', 'department', 'designation']"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [rowHover]="true"
+        dataKey="id"
+        styleClass="p-datatable-responsive-demo"
+        responsiveLayout="scroll"
+      >
+        <ng-template pTemplate="header">
+          <tr class="user-table-header">
+            <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+            <th pSortableColumn="zoneId">Zone ID <p-sortIcon field="zoneId"></p-sortIcon></th>
+            <th pSortableColumn="emailId">Email ID <p-sortIcon field="emailId"></p-sortIcon></th>
+            <th pSortableColumn="role">Role <p-sortIcon field="role"></p-sortIcon></th>
+            <th pSortableColumn="department">Department <p-sortIcon field="department"></p-sortIcon></th>
+            <th pSortableColumn="designation">Designation <p-sortIcon field="designation"></p-sortIcon></th>
+            <th>Action</th>
+          </tr>
+        </ng-template>
+        
+        <ng-template pTemplate="body" let-user>
+          <tr [ngClass]="{'selected-row': isSelected(user)}">
+            <td><span class="p-column-title">Name</span>{{ user.name }}</td>
+            <td><span class="p-column-title">Zone ID</span>{{ user.zoneId }}</td>
+            <td><span class="p-column-title">Email ID</span>{{ user.emailId }}</td>
+            <td><span class="p-column-title">Role</span>{{ user.role }}</td>
+            <td><span class="p-column-title">Department</span>{{ user.department }}</td>
+            <td><span class="p-column-title">Designation</span>{{ user.designation }}</td>
+            <td>
+              <span class="p-column-title">Action</span>
+              <div class="action-buttons">
+                <button 
+                  pButton 
+                  pRipple 
+                  icon="pi pi-pencil" 
+                  class="p-button-rounded p-button-text p-button-info me-2" 
+                  (click)="editUser(user)"
+                ><i class="bi bi-pencil"></i></button>
+                <button 
+                  pButton 
+                  pRipple 
+                  icon="pi pi-trash" 
+                  class="p-button-rounded p-button-text p-button-danger" 
+                  (click)="deleteUser(user)"
+                ><i class="bi bi-trash"></i></button>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
+
+
+<p-dialog 
+  [(visible)]="visible" 
+  [modal]="true" 
+  [draggable]="false" 
+  [resizable]="false"
+  [style]="{width: '100%', maxWidth: '600px',}"
+  [contentStyle]="{padding: '0'}"
+  styleClass="register-popup"
+  [showHeader]="false"
+  [closeOnEscape]="true"
+  [dismissableMask]="true"
+  (onHide)="closeDialog()">
+  
+  <div class="register-popup-container">
+    
+    <div class="popup-header d-flex justify-content-between align-items-center p-3">
+      <div class="logo-container">
+        <img src="assets/Kirloskar-Powergen.svg" alt="Kirloskar" height="30">
+      </div>
+      <button type="button" class="btn-close" aria-label="Close" (click)="closeDialog()"></button>
+    </div>
+    
+
+    <div class="popup-body p-3">
+      <h5 class="mb-3">Register Information</h5>
+      
+      <form [formGroup]="registerForm" (ngSubmit)="submitForm()">
+        
+    
+
+        <div class="row mb-3">
+          <div class="col-md-2">
+            <label for="title" class="label-color">Title</label>
+            <p-dropdown 
+
+            [options]="titles" 
+            formControlName="title"
+            optionLabel="name"
+            optionValue="value"
+            placeholder="Mr"
+            [style]="{'width':'100%',
+            'height':'53%'
+
+          }"
+            styleClass="w-100">
+          </p-dropdown>
+          </div>
+          <div class="col-md-3">
+            <label for="username" class="label-color">User Name</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              placeholder="First Name" 
+              formControlName="firstName">
+          </div>
+          <div class="col-md-3">
+            <label for="middleName" class="label-color">Middle Name</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              placeholder="Middle Name" 
+              formControlName="middleName">
+          </div>
+          <div class="col-md-4">
+            <label for="lastName" class="label-color">Last Name</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              placeholder="Last Name" 
+              formControlName="lastName">
+          </div>
+        </div>
+        
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <label for="phoneNumber" class="label-color">Phone Number</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              placeholder="Phone Number" 
+              formControlName="phoneNumber">
+          </div>
+          <div class="col-md-8">
+            <label for="emailId" class="label-color">Email ID</label>
+            <input 
+              type="email" 
+              class="form-control" 
+              placeholder="Email ID" 
+              formControlName="email">
+          </div>
+        </div>
+        
+        <div class="mb-3">
+          <label for="organization" class="label-color">organization</label>
+          <p-dropdown 
+            [options]="organizations" 
+            formControlName="organization"
+            optionLabel="name"
+            optionValue="value"
+            placeholder="Organization"
+           [style]="{'width':'100%',
+            'height':'53%'
+
+          }"
+            styleClass="w-100">
+          </p-dropdown>
+        </div>
+        
+        <div class="mb-3">
+          <label for="department" class="label-color">Department</label>
+          <p-dropdown 
+            [options]="departments" 
+            formControlName="department"
+            optionLabel="name"
+            optionValue="value"
+            placeholder="Department"
+            [style]="{'width':'100%'}"
+            styleClass="w-100">
+          </p-dropdown>
+        </div>
+        
+        <div class="mb-3">
+          <label for="designation" class="label-color">Designation</label>
+          <p-dropdown 
+            [options]="designations" 
+            formControlName="designation"
+            optionLabel="name"
+            optionValue="value"
+            placeholder="Designation"
+            [style]="{'width':'100%'}"
+            styleClass="w-100">
+          </p-dropdown>
+        </div>
+        
+        <div class="mb-3">
+          <label for="reportingManager" class="label-color">Reporting Manager</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            placeholder="Reporting Manager" 
+            formControlName="reportingManager">
+        </div>
+        
+        <div class="d-grid">
+          <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</p-dialog>
+

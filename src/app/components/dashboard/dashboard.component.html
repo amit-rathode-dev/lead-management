@@ -17,7 +17,7 @@
           
             
                   <div class="d-flex gap-3 ">
-                    <div class="small-card p-3 rounded flex-grow-1 shadow-sm" style="background: #F9F9F9;">
+                    <div class="small-card p-3 rounded flex-grow-1" style="background: #F9F9F9;">
                       <div class="d-flex flex-column">
                         <div class="d-flex align-items-center">
                           <span class="status-indicator goem me-2"></span>
@@ -45,7 +45,6 @@
                           <span class="small text-secondary fw-semibold">Total Sales Representative</span>
                         </div>
                         
-                     
                         <div class="d-flex align-items-center justify-content-between mt-2">
                           <h4 class="fw-bold mb-0">126</h4>
                           <div class="d-flex align-items-center text-success bg-light px-2 py-1 rounded w-auto">
@@ -58,11 +57,8 @@
                         </div>
                       </div>
                     </div>
-                    
-                    
-                      
-                      
-                    </div>
+                        
+                </div>
                                     
               </div>
             </div>
@@ -80,10 +76,16 @@
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <h6 class="text-secondary mb-0">Tickets</h6>
                         <div class="dropdown">
-                            <button class="btn btn-sm btn-link text-secondary dropdown-toggle p-0" type="button" data-bs-toggle="dropdown">
-                                This Month <i class="pi pi-chevron-down"></i>
-                            </button>
+                          <button class="btn btn-sm btn-link text-secondary  p-0 custom-background" type="button" data-bs-toggle="dropdown">
+                            {{ selectedMonth }} <i class="pi pi-chevron-down"></i>
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li *ngFor="let month of months" (click)="selectMonth(month)">
+                              <a class="dropdown-item">{{ month }}</a>
+                            </li>
+                          </ul>
                         </div>
+                        
                     </div>
     
 
@@ -140,9 +142,25 @@
             <div class="d-flex justify-content-between align-items-center mb-3">
               <h6 class="card-title mb-0">Total Lead Generated</h6>
               <div class="dropdown">
-                <button class="btn btn-sm btn-link text-secondary dropdown-toggle p-0" type="button" data-bs-toggle="dropdown">
-                  Last 6 Months <i class="pi pi-chevron-down"></i>
+
+
+                <button class="btn btn-sm btn-link text-secondary  p-0 custom-background" type="button" data-bs-toggle="dropdown" style="color: F6F6F6;">
+                  {{ selectedPeriod }} <i class="pi pi-chevron-down"></i>
                 </button>
+                <ul class="dropdown-menu">
+                  <li (click)="selectPeriod('Last 6 Months')">
+                    <a class="dropdown-item">Last 6 Months</a>
+                  </li>
+                  <li (click)="selectPeriod('Last 3 Months')">
+                    <a class="dropdown-item">Last 3 Months</a>
+                  </li>
+                  <li *ngFor="let month of lastSixMonths" (click)="selectPeriod(month)">
+                    <a class="dropdown-item">{{ month }}</a>
+                  </li>
+                  <li *ngFor="let month of lastThreeMonths" (click)="selectPeriod(month)">
+                    <a class="dropdown-item">{{ month }}</a>
+                  </li>
+                </ul>
               </div>
             </div>
             
@@ -176,12 +194,28 @@
             <div class="d-flex justify-content-between align-items-center mb-3">
               <h6 class="card-title mb-0">GOEM vs Sales Representative</h6>
               <div class="dropdown">
-                <button class="btn btn-sm btn-link text-secondary dropdown-toggle p-0" type="button" data-bs-toggle="dropdown">
-                  Last 6 Months <i class="pi pi-chevron-down"></i>
+
+
+                <button class="btn btn-sm btn-link text-secondary  p-0 custom-background" type="button" data-bs-toggle="dropdown" style="color: F6F6F6;">
+                  {{ selectedPeriod }} <i class="pi pi-chevron-down"></i>
                 </button>
+                <ul class="dropdown-menu">
+                  <li (click)="selectPeriod('Last 6 Months')">
+                    <a class="dropdown-item">Last 6 Months</a>
+                  </li>
+                  <li (click)="selectPeriod('Last 3 Months')">
+                    <a class="dropdown-item">Last 3 Months</a>
+                  </li>
+                  <li *ngFor="let month of lastSixMonths" (click)="selectPeriod(month)">
+                    <a class="dropdown-item">{{ month }}</a>
+                  </li>
+                  <li *ngFor="let month of lastThreeMonths" (click)="selectPeriod(month)">
+                    <a class="dropdown-item">{{ month }}</a>
+                  </li>
+                </ul>
               </div>
             </div>
-            <div class="chart-container">
+            <div class="chart-container" >
           
 
               <div id="chart">
@@ -198,7 +232,7 @@
                   [xaxis]="secondChart.xaxis"
                 ></apx-chart>
               </div>
-              <!-- <div id="goemVsSalesChart" style="height: 300px;"></div> -->
+             
             </div>
           </div>
         </div>
@@ -212,10 +246,7 @@
           <div class="card-body">
             <h6 class="card-title mb-3">Top 5 Categories</h6>
             <div class="chart-container">
-              <!-- <div id="categoriesChart" style="height: 300px;">
-
-                
-              </div> -->
+        
 
               <div id="chart">
                 <apx-chart
@@ -223,6 +254,7 @@
                   [chart]="pieChart.chart"
                   [labels]="pieChart.labels"
                   [responsive]="pieChart.responsive"
+                  [legend]="pieChart.legend"
                 ></apx-chart>
               </div>
             </div>
@@ -237,7 +269,25 @@
             <h6 class="card-title mb-3">Top 5 Performing Zones</h6>
             <div class="chart-container">
        
-              <div id="zonesChart" style="height: 300px;"></div>
+              <!-- <div id="zonesChart" style="height: 300px;"></div> -->
+              <div class="chart-container" >
+          
+
+                <div id="chart">
+                  <apx-chart
+                    [series]="lastChartOption.series"
+                    [series]="lastChartOption.series"
+                    [chart]="lastChartOption.chart"
+                    [plotOptions]="lastChartOption.plotOptions"
+                    [dataLabels]="lastChartOption.dataLabels"
+                    [stroke]="lastChartOption.stroke"
+                    [xaxis]="lastChartOption.xaxis"
+                    [yaxis]="lastChartOption.yaxis"
+                    [fill]="lastChartOption.fill"
+                  ></apx-chart>
+                </div>
+               
+              </div>
             </div>
           </div>
         </div>

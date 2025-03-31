@@ -329,3 +329,15 @@ margin-top: 4rem;
 
 }
 
+::ng-deep .apexcharts-pattern path {
+  stroke: #647E64 !important; /* ✅ Forces slanted lines to be green */
+  stroke-width: 2px !important; /* ✅ Ensures proper visibility */
+}
+
+
+.custom-background{
+  background-color: #F9F9F9;
+ 
+  border-radius: 6px;
+
+}

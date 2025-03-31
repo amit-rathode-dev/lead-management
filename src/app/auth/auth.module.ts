@@ -11,18 +11,18 @@ import { InputTextModule } from 'primeng/inputtext';
 
 
 
+
+
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule,
+
+    CommonModule, 
     AuthRoutingModule,
     MessageModule,
     PasswordModule,
-    ButtonModule,// Add this
-
+    ButtonModule,
     InputTextModule,
-    PasswordModule 
-  
   ]
 })
 export class AuthModule { }

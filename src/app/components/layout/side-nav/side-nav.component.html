@@ -1,4 +1,4 @@
-
+<!-- 
    <div class="sidebar" [class.collapsed]="isCollapsed">
 
     <div class="sidebar-header">
@@ -11,31 +11,112 @@
     <ul class="sidebar-menu">
       <li [class.active]="activeRoute === '/dashboard'">
         <a routerLink="/dashboard" (click)="setActive('/dashboard')">
-          <i class="pi pi-th-large"></i>
+     
+          <img  src="./../../../../assets/Dashboard-Icon.svg" class="iconimg">
           @if (!isCollapsed) { <span>Dashboard</span> }
         </a>
       </li>
-      <li [class.active]="activeRoute === '/user-roles'">
-        <a routerLink="/user-roles" (click)="setActive('/user-roles')">
-          <i class="pi pi-user"></i>
+      <li [class.active]="activeRoute === '/categories'">
+        <a routerLink="/user-roles" (click)="setActive('/categories')">
+    
+          <img  src="./../../../../assets/categories-img.svg" class="iconimg">
+          @if (!isCollapsed) { <span>Categories</span> }
+        </a>
+      </li>
+      <li [class.active]="activeRoute === '/products'">
+   
+        <a routerLink="/user-roles" (click)="setActive('/products')">
+         
+          <img  src="./../../../../assets/product.svg" class="iconimg">
+          @if (!isCollapsed) { <span>Products</span> }
+        </a>
+      </li>
+
+      <li [class.active]="activeRoute == 'user-roles'">
+        <a routerLink="user-roles" (click)="setActive('/user-roles')">
+        
+          <img  src="./../../../../assets/user-icon.svg" class="iconimg">
           @if (!isCollapsed) { <span>User Roles</span> }
         </a>
       </li>
       <li [class.active]="activeRoute === '/zone-management'">
         <a routerLink="/zone-management" (click)="setActive('/zone-management')">
-          <i class="pi pi-map-marker"></i>
+      
+          <img  src="./../../../../assets/zone-icon.svg" class="iconimg"  >
           @if (!isCollapsed) { <span>Zone Management</span> }
         </a>
       </li>
       <li [class.active]="activeRoute === '/dealer-management'">
         <a routerLink="/dealer-management" (click)="setActive('/dealer-management')">
-            <i class="pi pi-briefcase"></i> 
+        
+            <img  src="./../../../../assets/dealer-icon.svg" class="iconimg">
           @if (!isCollapsed) { <span>Dealer Management</span> }
         </a>
       </li>
       <li [class.active]="activeRoute === '/document-upload'">
         <a routerLink="/document-upload" (click)="setActive('/document-upload')">
-          <i class="pi pi-file"></i>
+       
+          <img  src="./../../../../assets/file-upload.svg" class="iconimg">
+          @if (!isCollapsed) { <span>Document Upload</span> }
+        </a>
+      </li>
+    </ul>
+  </div>
+   -->
+
+   <div class="sidebar" [class.collapsed]="isCollapsed">
+    <div class="sidebar-header">
+      <button class="toggle-btn" (click)="toggleSidebar()">
+        <i class="pi pi-bars"></i> 
+      </button>
+    </div>
+  
+    <ul class="sidebar-menu">
+      <li [class.active]="activeRoute === '/dashboard'">
+        <a routerLink="/dashboard">
+          <img src="./../../../../assets/Dashboard-Icon.svg" class="iconimg">
+          @if (!isCollapsed) { <span>Dashboard</span> }
+        </a>
+      </li>
+  
+      <li [class.active]="activeRoute === '/categories'">
+        <a routerLink="/categories">
+          <img src="./../../../../assets/categories-img.svg" class="iconimg">
+          @if (!isCollapsed) { <span>Categories</span> }
+        </a>
+      </li>
+  
+      <li [class.active]="activeRoute === '/products'">
+        <a routerLink="/products">
+          <img src="./../../../../assets/product.svg" class="iconimg">
+          @if (!isCollapsed) { <span>Products</span> }
+        </a>
+      </li>
+  
+      <li [class.active]="activeRoute === '/user-roles'">
+        <a routerLink="/user-roles">
+          <img src="./../../../../assets/user-icon.svg" class="iconimg">
+          @if (!isCollapsed) { <span>User Roles</span> }
+        </a>
+      </li>
+  
+      <li [class.active]="activeRoute === '/zone-management'">
+        <a routerLink="/zone-management">
+          <img src="./../../../../assets/zone-icon.svg" class="iconimg">
+          @if (!isCollapsed) { <span>Zone Management</span> }
+        </a>
+      </li>
+  
+      <li [class.active]="activeRoute === '/dealer-management'">
+        <a routerLink="/dealer-management">
+          <img src="./../../../../assets/dealer-icon.svg" class="iconimg">
+          @if (!isCollapsed) { <span>Dealer Management</span> }
+        </a>
+      </li>
+  
+      <li [class.active]="activeRoute === '/document-upload'">
+        <a routerLink="/document-upload">
+          <img src="./../../../../assets/file-upload.svg" class="iconimg">
           @if (!isCollapsed) { <span>Document Upload</span> }
         </a>
       </li>

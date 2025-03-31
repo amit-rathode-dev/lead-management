@@ -47,8 +47,10 @@
   display: flex;
   align-items: center;
   text-decoration: none;
-  font-weight: 500;
-  padding: 12px 15px;
+  /* font-weight: 500; */
+  font-weight: 500px;
+  /* padding: 12px 15px; */
+  padding: 8px 10px;
   border-radius: 20px 0 0 20px;
   transition: 0.3s;
   width: 100%;
@@ -61,7 +63,8 @@
 
 .sidebar-menu li.active a {
   background-color: white; 
-  font-weight: bold;
+  /* font-weight: bold; */
+  font-weight: 100px;
   border-radius: 20px 0 0 20px;
   box-shadow: inset -4px 0px 0px #ffffff; 
   width: calc(100% + 20px); 
@@ -85,4 +88,11 @@
   .sidebar-menu li a span {
     display: none;
   }
+}
+
+
+.iconimg{
+  margin-right: 0.5rem;
+  height: 17px;
+   width:17px;
 }

@@ -1,4 +1,5 @@
 
+import { CommonModule } from "@angular/common";
 import { Component, ViewChild } from "@angular/core";
 import {
   ApexAxisChartSeries,
@@ -34,11 +35,12 @@ export type ChartOptions = {
 import { CardModule } from 'primeng/card';
 
 import { ProgressBarModule } from 'primeng/progressbar';
+import { ReusablemodulesComponent } from "../shared/reusablemodules/reusablemodules.component";
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [ProgressBarModule, CardModule, NgApexchartsModule,],
+  imports: [ReusablemodulesComponent, NgApexchartsModule,CommonModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
@@ -51,12 +53,31 @@ export class DashboardComponent {
   public chartOptions!: any;
   public secondChart!: any;
   public pieChart!: any;
+  public lastChartOption!: any;
+  selectedPeriod: string = "Last 6 Months";
+  lastSixMonths: string[] = [];
+  lastThreeMonths: string[] = [];
 
+
+
+
+  months: string[] = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+  
+  selectedMonth: string = this.months[new Date().getMonth()]; // ✅ Default to current month
+
+  selectMonth(month: string) {
+    this.selectedMonth = month; // ✅ Update when clicked
+  }
 
   constructor() {
 
 
     this.chartOptions = {
+
+ 
       series: [
         {
           name: "Lead Generation count",
@@ -67,7 +88,7 @@ export class DashboardComponent {
       ],
       chart: {
         type: "bar",
-        height: 250
+        height: 200
       },
       colors: ["#19988B"],
       plotOptions: {
@@ -83,7 +104,7 @@ export class DashboardComponent {
       },
       stroke: {
         show: true,
-        width: 2,
+        width: 0.5,
         colors: ["transparent"],
       },
       xaxis: {
@@ -135,61 +156,63 @@ export class DashboardComponent {
     };
 
 
+    
 
-    this.secondChart = {
-      series: [
-        {
-          name: "Sales Representative",
-          data: [44, 55, 57, 56, 61, 58],
-          color: "#19988B"
+      this.secondChart = {
+        series: [
+          {
+            name: "Sales Representative",
+            data: [44, 55, 57, 56, 61, 58],
+            color: "#19988B"
+          },
+          {
+            name: "GOEM",
+            data: [76, 85, 101, 98, 87, 105],
+            color: "#C5DEDB"
+
+          }
+        ],
+        chart: {
+          type: "bar",
+          height: 200
         },
-        {
-          name: "GOEM",
-          data: [76, 85, 101, 98, 87, 105],
-          color: "#C5DEDB"
+        colors: ["#19988B", "#C5DEDB"],
+        plotOptions: {
+          bar: {
+            horizontal: false,
+            columnWidth: "55%",
+            borderRadius: 5,
+            borderRadiusApplication: "end",
+          }
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          show: true,
+          width: 2,
+          colors: ["transparent"],
+        },
+        xaxis: {
+          categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
+        },
 
+        fill: {
+          opacity: 1
+        },
+        tooltip: {},
+        legend: {
+
+          markers: {
+            width: 14,
+            height: 8,
+            radius: 2
+          }
+        },
+        grid: {
+          show: false  // 🚀 This removes the background horizontal lines
         }
-      ],
-      chart: {
-        type: "bar",
-        height: 250
-      },
-      colors: ["#19988B", "#C5DEDB"],
-      plotOptions: {
-        bar: {
-          horizontal: false,
-          columnWidth: "55%",
-          borderRadius: 5,
-          borderRadiusApplication: "end",
-        }
-      },
-      dataLabels: {
-        enabled: false
-      },
-      stroke: {
-        show: true,
-        width: 2,
-        colors: ["transparent"],
-      },
-      xaxis: {
-        categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
-      },
-
-      fill: {
-        opacity: 1
-      },
-      tooltip: {},
-      legend: {
-
-        markers: {
-          width: 14,
-          height: 8,
-          radius: 2
-        }
-      }
-    };
-
-
+      };
 
 
 
@@ -198,25 +221,80 @@ export class DashboardComponent {
       series: [44, 55, 13, 43, 22],
       chart: {
         type: "donut",
-        width: 250,  // Reduced width
-        height: 250  // Reduced height
+        width: 350,  
+        height: 250 
       },
       labels: ["Team A", "Team B", "Team C", "Team D", "Team E"],
+      
       responsive: [
         {
           breakpoint: 480,
           options: {
             chart: {
-              width: 180, // Adjusted for small screens
+              width: 180, 
               height: 2000
             },
             legend: {
-              position: "bottom"
+              position: "top",
+              horizontalAlign: 'left', 
+            
             }
           }
         }
       ]
     };
+
+
+
+
+
+
+    this.lastChartOption = {
+      series: [
+        {
+          name: "Leads",
+          data: [95, 85, 90, 75, 100] // Example data
+        }
+      ],
+      chart: {
+        type: "bar",
+        height: 220
+      },
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: "30%",
+          endingShape: "rounded" // Rounded bars
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        show: false
+      },
+      xaxis: {
+        categories: ["Zone1", "Zone2", "Zone3", "Zone4", "Zone5"]
+      },
+      yaxis: {
+        title: {
+          text: "Leads"
+        }
+      },
+      fill: {
+        type: "pattern",
+        pattern: {
+          style: "slantedLines", // ✅ Slanted lines pattern
+          width: 8, // ✅ Adjust width for visibility
+          height: 8,
+          strokeWidth: 2, // ✅ Bold lines
+          color: "#647E64" // ✅ Greenish color for the pattern
+        }
+      },
+      colors: ["#D6E6E6"], // ✅ Light background color instead of blue
+    
+    
+    };  
 
 
   }
@@ -228,7 +306,25 @@ export class DashboardComponent {
 
 
 
+  getLastMonths(count: number) {
+    let today = new Date();
+    let monthsArray = [];
 
+    for (let i = 0; i < count; i++) {
+      let monthIndex = (today.getMonth() - i + 12) % 12;
+      monthsArray.push(this.months[monthIndex]);
+    }
+
+    if (count === 6) {
+      this.lastSixMonths = monthsArray;
+    } else if (count === 3) {
+      this.lastThreeMonths = monthsArray;
+    }
+  }
+
+  selectPeriod(period: string) {
+    this.selectedPeriod = period; // ✅ Updates button label when clicked
+  }
 
 
 }

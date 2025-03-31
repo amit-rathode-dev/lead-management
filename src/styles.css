@@ -16,7 +16,31 @@
   body, app-root {
     background-color: #F7F7F7 !important;
 
-   
 
   }
   
+  
+.data-table-container .table-header th {
+  background-color: #24AFA1A8;
+  color: white !important;
+
+}
+
+.p-button.p-button-custom-success {
+  color: #ffffff !important; 
+  background-color: #24AFA1A8 !important;
+  border: 1px solid #24AFA1A8 !important; 
+}
+
+
+.p-button.p-button-custom-success:hover {
+  background-color: #24AFA1A8 !important;
+  border-color: #24AFA1A8 !important; 
+  
+}
+
+
+.root{
+  --color-primary:24AFA1A8,
+
+}
